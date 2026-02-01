@@ -189,9 +189,6 @@ WRONG (missing citations - DO NOT DO THIS):
         """
         Build Pydantic AI message history from the documents.
 
-        Args:
-            question: The question to ask about the document(s).
-
         Returns:
             List of ModelMessage for Pydantic AI message_history parameter.
         """
@@ -214,8 +211,6 @@ WRONG (missing citations - DO NOT DO THIS):
                         media_type="image/png",
                     )
                 )
-
-        user_content.append(f"\n\nQuestion: {question}")
 
         return [
             ModelRequest(
