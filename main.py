@@ -146,7 +146,7 @@ def example_pydantic_ai_openrouter():
     print("Type 'quit' to exit.\n")
 
     # Initialize with document context (no question yet)
-    history = builder.build_message_history("")
+    history = builder.build_message_history()
 
     while True:
         user_input = input("You: ").strip()
