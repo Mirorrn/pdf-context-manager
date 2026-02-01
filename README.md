@@ -1,14 +1,32 @@
 # PDF Context Manager
 
-Convert PDFs into multimodal LLM requests for vision-capable models. Query your PDFs using GPT-4o, Claude, or any OpenAI-compatible API.
+**Turn any vision-capable LLM into a PDF-native model.**
+
+Most LLMs can see images but can't read PDFs directly. This library bridges that gap by converting PDF documents into a format that vision models understand — combining rendered page images with extracted text. Now you can query PDFs with any model that supports vision.
+
+```python
+from pdf_context_manager import PDFQueryEngine
+
+engine = PDFQueryEngine(model="gpt-4o")
+result = engine.query("research_paper.pdf", "What are the key findings?")
+print(result.answer)
+```
+
+## Why?
+
+- **No special PDF models needed** — Use your existing vision-capable LLM
+- **Preserves visual layout** — Tables, charts, and figures are rendered as images
+- **Extracts text too** — OCR-free text extraction for searchable PDFs
+- **Works with any provider** — OpenAI, Anthropic, OpenRouter, local models via Ollama
 
 ## Features
 
-- **Multimodal PDF Processing** - Extracts both text and renders page images for vision models
-- **OpenAI & OpenRouter Support** - Works with GPT-4o, Claude, Mistral, and other vision models
-- **Pydantic AI Integration** - Build conversational agents with PDF context
-- **Multi-Document Queries** - Ask questions across multiple PDFs simultaneously
-- **Automatic Citations** - Built-in prompting for page-level source citations
+- **Universal PDF Input** - Give any vision LLM the ability to read PDFs
+- **Dual-Mode Processing** - Combines page images with extracted text for best results
+- **Provider Agnostic** - OpenAI, OpenRouter, or any OpenAI-compatible API
+- **Pydantic AI Integration** - Build conversational agents with full PDF context
+- **Multi-Document Queries** - Ask questions across multiple PDFs at once
+- **Built-in Citations** - Responses include page-level source references
 
 ## Installation
 
@@ -175,30 +193,30 @@ while True:
 
 ### PDFDocument
 
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `pdf_path` | required | Path to the PDF file |
-| `dpi` | 150 | Resolution for page image rendering |
-| `image_format` | "PNG" | Output format (PNG, JPEG) |
+| Parameter      | Default  | Description                         |
+| -------------- | -------- | ----------------------------------- |
+| `pdf_path`     | required | Path to the PDF file                |
+| `dpi`          | 150      | Resolution for page image rendering |
+| `image_format` | "PNG"    | Output format (PNG, JPEG)           |
 
 ### ContextBuilder
 
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `system_prompt` | (citation prompt) | Custom system instructions |
-| `include_text_layer` | True | Include extracted PDF text |
-| `image_detail` | "high" | OpenAI image detail (low/high/auto) |
+| Parameter            | Default           | Description                         |
+| -------------------- | ----------------- | ----------------------------------- |
+| `system_prompt`      | (citation prompt) | Custom system instructions          |
+| `include_text_layer` | True              | Include extracted PDF text          |
+| `image_detail`       | "high"            | OpenAI image detail (low/high/auto) |
 
 ### PDFQueryEngine
 
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `api_key` | None | API key for LLM provider |
-| `base_url` | None | Custom API endpoint (e.g., OpenRouter) |
-| `model` | "gpt-4o" | Model name |
-| `max_tokens` | 4096 | Max response tokens |
-| `temperature` | 0.0 | Sampling temperature |
-| `verbose` | False | Print request payloads for debugging |
+| Parameter     | Default  | Description                            |
+| ------------- | -------- | -------------------------------------- |
+| `api_key`     | None     | API key for LLM provider               |
+| `base_url`    | None     | Custom API endpoint (e.g., OpenRouter) |
+| `model`       | "gpt-4o" | Model name                             |
+| `max_tokens`  | 4096     | Max response tokens                    |
+| `temperature` | 0.0      | Sampling temperature                   |
+| `verbose`     | False    | Print request payloads for debugging   |
 
 ## QueryResult
 
