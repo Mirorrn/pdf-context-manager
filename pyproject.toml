@@ -1,0 +1,20 @@
+[project]
+name = "pdf-context-manager"
+version = "0.1.0"
+description = "Convert PDFs to multimodal LLM requests for vision-capable models"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "openai>=1.0.0",
+    "pypdf>=4.0.0",
+    "pdf2image>=1.17.0",
+    "pillow>=10.0.0",
+    "python-dotenv>=1.0.0",
+    "pydantic-ai>=0.1.0",
+    "pydantic-ai-slim[openrouter,web]>=1.51.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+]
